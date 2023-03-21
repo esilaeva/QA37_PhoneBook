@@ -1,8 +1,13 @@
 package manager;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HelperUser extends HelperBase{
     public HelperUser(WebDriver wd) {
@@ -41,5 +46,18 @@ public class HelperUser extends HelperBase{
 
     public void logout(){
         click(By.xpath("//button[text()='Sign Out']"));
+    }
+
+    public boolean isAlertPresent(String message) {
+        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        if(alert != null && alert.getText().contains(message)) {
+            // click Ok
+            alert.accept();
+            // click Cancel ----> alert.dismiss();
+            // click text   ----> alert.sendKeys("text");
+            return true;
+        }
+        return false;
     }
 }
