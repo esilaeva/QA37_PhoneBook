@@ -11,7 +11,7 @@ public class ApplicationManager {
     WebDriver wd;
     HelperUser helperUser;
 
-    public void init(){
+    public void init() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         wd = new ChromeDriver(options);
@@ -25,7 +25,7 @@ public class ApplicationManager {
         return helperUser;
     }
 
-    public void stop(){
+    public void stop() {
         wd.quit();
     }
 }
