@@ -10,6 +10,7 @@ public class ApplicationManager {
 
     WebDriver wd;
     HelperUser helperUser;
+    HelperContact helperContact;
 
     public void init() {
         ChromeOptions options = new ChromeOptions();
@@ -19,10 +20,14 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wd.navigate().to("https://telranedu.web.app/");
         helperUser = new HelperUser(wd);
+        helperContact = new HelperContact(wd);
     }
 
     public HelperUser getHelperUser() {
         return helperUser;
+    }
+    public HelperContact getHelperContact() {
+        return helperContact;
     }
 
     public void stop() {
