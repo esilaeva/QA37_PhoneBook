@@ -26,6 +26,7 @@ public class ApplicationManager {
     public HelperUser getHelperUser() {
         return helperUser;
     }
+
     public HelperContact getHelperContact() {
         return helperContact;
     }

@@ -87,7 +87,7 @@ public class RegistrationTests extends TestBase {
     }
 
     @Test
-    public void registrationExistsUser(){
+    public void registrationExistsUser() {
 
         User user = new User().setEmail("noa@gmail.com").setPassword("Nnoa12345$");
         app.getHelperUser().openLoginRegistrationForm();
@@ -96,9 +96,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isAlertPresent("User already exist"));
 
 
-
     }
-
 
 
 }

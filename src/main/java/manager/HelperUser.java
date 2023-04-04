@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -55,19 +56,6 @@ public class HelperUser extends HelperBase {
         click(By.xpath("//button[text()='Sign Out']"));
     }
 
-    public boolean isAlertPresent(String message) {
-        WebDriverWait wait = new WebDriverWait(wd, Duration.ofSeconds(5));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        if (alert != null && alert.getText().contains(message)) {
-            // click Ok
-            alert.accept();
-            // click Cancel ----> alert.dismiss();
-            // click text   ----> alert.sendKeys("text");
-            return true;
-        }
-        return false;
-    }
-
     public void openRegistrationForm() {
         click(By.xpath("//a[text()='LOGIN']"));
     }
@@ -91,5 +79,10 @@ public class HelperUser extends HelperBase {
         openLoginRegistrationForm();
         fillLoginRegistrationForm(user);
         submitLogin();
+    }
+
+
+    public boolean isAddPageStillDisplayed() {
+        return isElementPresent(By.cssSelector("a.active[href='/add']"));
     }
 }
