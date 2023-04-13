@@ -92,6 +92,7 @@ public class AddNewContactTests extends TestBase {
 
     @Test
     public void addNewContactWrongLastName() {
+        int i = new Random().nextInt(1000) + 1000;
         Contact contact = Contact.builder()
                 .name("Vera4")
                 .lastName("")
@@ -102,8 +103,8 @@ public class AddNewContactTests extends TestBase {
                 .build();
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
+        app.getHelperContact().getScreen("C:\\Users\\97253\\Documents\\QA37Auto\\QA37_PhoneBook\\src\\test\\screenshots\\screen"+i+".png");
         app.getHelperContact().saveContact();
-
         Assert.assertTrue(app.getHelperUser().isAddPageStillDisplayed());
     }
 

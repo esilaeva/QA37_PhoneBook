@@ -25,21 +25,22 @@ public class RemoveContactTests extends TestBase {
 
     @Test
     public void removeFirstContact() {
-        int size = app.getHelperContact().listContactSize();
-
+       // int size = app.getHelperContact().listContactSize();
         app.getHelperContact().selectContact();
         app.getHelperContact().submitDeleteContact();
         app.getHelperContact().pause(3000);
 
-        Assert.assertEquals(app.getHelperContact().listContactSize(), size - 1);
+        //Assert.assertEquals(app.getHelperContact().listContactSize(), size - 1);
+        Assert.assertEquals(app.getHelperContact().removeOneContact(), 1);
     }
 
     @Test
     public void removeAllContacts() {
+//        app.getHelperContact().selectContact();
+//        app.getHelperContact().deleteAllContact();
+//
 
-        app.getHelperContact().selectContact();
-        app.getHelperContact().deleteAllContact();
-
+        app.getHelperContact().removeAllContacts();
         Assert.assertEquals(app.getHelperContact().getMessage(), "No Contacts here!");
     }
 
