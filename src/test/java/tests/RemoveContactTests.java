@@ -11,17 +11,18 @@ public class RemoveContactTests extends TestBase {
 
     Contact contact;
 
-    @BeforeClass
-    public void preConditionClass() {
+    @BeforeMethod
+    public void preCondition() {
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().setEmail("b.snyder@gmail.com").setPassword("Tt12345$"));
         }
+        app.getHelperContact().provideContacts();
     }
 
-    @BeforeMethod
-    public void preConditionMethod() {
-        app.getHelperContact().provideContacts(); /// if list <3 ===> add 3 contacts
-    }
+//    @BeforeMethod
+//    public void preConditionMethod() {
+//        app.getHelperContact().provideContacts(); /// if list <3 ===> add 3 contacts
+//    }
 
     @Test
     public void removeFirstContact() {

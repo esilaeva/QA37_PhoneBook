@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
+import java.util.Random;
 
 public class HelperContact extends HelperBase {
 
@@ -86,16 +87,39 @@ public class HelperContact extends HelperBase {
     }
 
     public void provideContacts() {
-        List<WebElement> list = wd.findElements(By.xpath("//h3"));
+//        List<WebElement> list = wd.findElements(By.xpath("//h3"));
+//
+//        int i = list.size();
+//        if (i < 3) {
+//            while (i != 3) {
+//                addContact();
+//                pause(3000);
+//                i++;
+//            }
+//        }
 
-        int i = list.size();
-        if (i < 3) {
-            while (i != 3) {
-                addContact();
-                pause(3000);
-                i++;
+        if (countOfContacts() < 3) {
+            for (int i = 0; i < 3; i++) {
+                addOneContact();
             }
+
         }
+    }
+
+    private void addOneContact() {
+        int i = new Random().nextInt(1000) + 1000;
+        Contact contact = Contact.builder()
+                .name("Harry" + i)
+                .lastName("Potter")
+                .address("Hogwards")
+                .email("harry"+i+"@gmail.com")
+                .phone("5559996663"+i)
+                .description("Friend")
+                .build();
+        openContactForm();
+        fillContactForm(contact);
+        saveContact();
+        pause(1500);
     }
 
     public void addContact() {
@@ -113,7 +137,7 @@ public class HelperContact extends HelperBase {
         saveContact();
     }
 
-    public int removeOneContact(){
+    public int removeOneContact() {
         int before = countOfContacts();
         logger.info("Number of Contacts list before remove is ---> " + before);
         removeContact();
@@ -135,7 +159,7 @@ public class HelperContact extends HelperBase {
     }
 
     public void removeAllContacts() {
-        while(wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size() !=0){
+        while (wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size() != 0) {
             removeContact();
         }
     }
