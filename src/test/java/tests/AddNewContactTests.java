@@ -6,6 +6,7 @@ import models.Contact;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Random;
@@ -110,15 +111,15 @@ public class AddNewContactTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isAddPageStillDisplayed());
     }
 
-    @Test
-    public void addNewContactWrongPhone() {
-        Contact contact = Contact.builder()
-                .name("Vera5")
-                .lastName("Salt")
-                .phone("")
-                .email("v.salt@gmail.com")
-                .address("Tel-Aviv")
-                .build();
+    @Test(dataProvider = "contactWrongPhone", dataProviderClass = DataProviderContact.class)
+    public void addNewContactWrongPhone(Contact contact) {
+//        Contact contact = Contact.builder()
+//                .name("Vera5")
+//                .lastName("Salt")
+//                .phone("")
+//                .email("v.salt@gmail.com")
+//                .address("Tel-Aviv")
+//                .build();
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
