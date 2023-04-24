@@ -1,5 +1,7 @@
 package tests;
 
+import manager.DataProviderContact;
+import manager.DataProviderUser;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
@@ -17,17 +19,17 @@ public class AddNewContactTests extends TestBase {
         }
     }
 
-    @Test
-    public void addContactSuccessAllFields() {
-        int i = (int) System.currentTimeMillis() / 1000;
-        Contact contact = Contact.builder()
-                .name("Vera1")
-                .lastName("Salt")
-                .phone("972345" + i)
-                .email("v.salt" + i + "@gmail.com")
-                .address("Tel-Aviv")
-                .description("The best friend")
-                .build();
+    @Test(dataProvider = "contactSuccess", dataProviderClass = DataProviderContact.class)
+    public void addContactSuccessAllFields(Contact contact) {
+//        int i = (int) System.currentTimeMillis() / 1000;
+//        Contact contact = Contact.builder()
+//                .name("Vera1")
+//                .lastName("Salt")
+//                .phone("972345" + i)
+//                .email("v.salt" + i + "@gmail.com")
+//                .address("Tel-Aviv")
+//                .description("The best friend")
+//                .build();
         app.getHelperContact().openContactForm();
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
