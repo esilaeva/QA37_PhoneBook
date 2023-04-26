@@ -15,6 +15,7 @@ public class DataProviderContact {
         return list.iterator();
     }
 
+
     @DataProvider
     public Iterator<Object[]> contactWrongPhone() {
         List<Object[]> list = new ArrayList<>();
