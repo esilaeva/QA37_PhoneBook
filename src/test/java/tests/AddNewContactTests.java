@@ -22,6 +22,7 @@ public class AddNewContactTests extends TestBase {
 
     @Test(dataProvider = "contactSuccess", dataProviderClass = DataProviderContact.class)
     public void addContactSuccessAllFields(Contact contact) {
+
 //        int i = (int) System.currentTimeMillis() / 1000;
 //        Contact contact = Contact.builder()
 //                .name("Vera1")
@@ -32,6 +33,7 @@ public class AddNewContactTests extends TestBase {
 //                .description("The best friend")
 //                .build();
         app.getHelperContact().openContactForm();
+        app.getHelperContact().pause(1000);
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
@@ -52,6 +54,7 @@ public class AddNewContactTests extends TestBase {
                 .address("Tel-Aviv")
                 .build();
         app.getHelperContact().openContactForm();
+        app.getHelperContact().pause(1000);
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
@@ -70,6 +73,7 @@ public class AddNewContactTests extends TestBase {
                 .address("Tel-Aviv")
                 .build();
         app.getHelperContact().openContactForm();
+        app.getHelperContact().pause(1000);
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
@@ -87,26 +91,28 @@ public class AddNewContactTests extends TestBase {
                 .description("The best friend")
                 .build();
         app.getHelperContact().openContactForm();
+        app.getHelperContact().pause(1000);
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
         Assert.assertTrue(app.getHelperUser().isAddPageStillDisplayed());
     }
 
-    @Test
-    public void addNewContactWrongLastName() {
+    @Test(dataProvider = "contactFile", dataProviderClass = DataProviderContact.class)
+    public void addNewContactWrongLastName(Contact contact) {
         int i = new Random().nextInt(1000) + 1000;
-        Contact contact = Contact.builder()
-                .name("Vera4")
-                .lastName("")
-                .phone("972345232323")
-                .email("v.salt@gmail.com")
-                .address("Tel-Aviv")
-                .description("The best friend")
-                .build();
+//        Contact contact = Contact.builder()
+//                .name("Vera4")
+//                .lastName("")
+//                .phone("972345232323")
+//                .email("v.salt@gmail.com")
+//                .address("Tel-Aviv")
+//                .description("The best friend")
+//                .build();
         app.getHelperContact().openContactForm();
+        app.getHelperContact().pause(1000);
         app.getHelperContact().fillContactForm(contact);
-        app.getHelperContact().getScreen("C:\\Users\\97253\\Documents\\QA37Auto\\QA37_PhoneBook\\src\\test\\screenshots\\screen"+i+".png");
+        app.getHelperContact().getScreen("src/test/screenshots/screen" + i + ".png");
         app.getHelperContact().saveContact();
         Assert.assertTrue(app.getHelperUser().isAddPageStillDisplayed());
     }
@@ -121,6 +127,7 @@ public class AddNewContactTests extends TestBase {
 //                .address("Tel-Aviv")
 //                .build();
         app.getHelperContact().openContactForm();
+        app.getHelperContact().pause(1000);
         app.getHelperContact().fillContactForm(contact);
         app.getHelperContact().saveContact();
 
