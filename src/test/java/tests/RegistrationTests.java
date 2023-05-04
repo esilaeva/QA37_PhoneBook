@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class RegistrationTests extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void preCondition() {
         if (app.getHelperUser().isLogged()) {
             app.getHelperUser().logout();
@@ -52,7 +52,7 @@ public class RegistrationTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isNoContactsHereDisplayed());
     }
 
-    @Test
+    @Test(description = "Bug report #234543 Fixed", groups = {"smoke"})
     public void registrationWrongEmail() {
         Random random = new Random();
         int i = random.nextInt(1000);

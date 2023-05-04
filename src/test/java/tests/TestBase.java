@@ -15,12 +15,12 @@ public class TestBase {
     static ApplicationManager app = new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName()));
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void startLogger(Method method){
         logger.info("Name of method ---> " + method.getName());
     }
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void setUp() {
         app.init();
     }

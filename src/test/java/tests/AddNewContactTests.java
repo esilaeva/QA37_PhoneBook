@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class AddNewContactTests extends TestBase {
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void preCondition() {
         if (!app.getHelperUser().isLogged()) {
             app.getHelperUser().login(new User().setEmail("b.snyder@gmail.com").setPassword("Tt12345$"));
@@ -135,7 +135,7 @@ public class AddNewContactTests extends TestBase {
         Assert.assertTrue(app.getHelperUser().isAlertPresent(" Phone not valid: Phone number must contain only digits! And length min 10, max 15!"));
     }
 
-    @Test
+    @Test(groups = {"smoke","regress","retest"})
     public void addNewContactWrongEmail() {
         Contact contact = Contact.builder()
                 .name("Vera6")
